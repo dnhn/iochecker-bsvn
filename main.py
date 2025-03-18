@@ -11,8 +11,8 @@ email = os.getenv('EMAIL')
 password = os.getenv('PASSWORD')
 
 options = webdriver.ChromeOptions()
-options.add_experimental_option('prefs', { 'profile.default_content_setting_values.notifications': 2 })
 options.add_argument('--headless')
+options.add_experimental_option('prefs', { 'profile.default_content_setting_values.notifications': 2 })
 driver = webdriver.Chrome(options)
 
 # dd/mm/yyyy
@@ -41,7 +41,7 @@ def check(date_str, time_str, note):
     date_input = driver.find_element(By.CSS_SELECTOR, 'input[data-role=date]')
     date_input.send_keys(date_str)
     time_input = driver.find_element(By.CSS_SELECTOR, 'input[data-role=time]')
-    for i in range(5):
+    for _ in range(5):
         time_input.send_keys(Keys.BACK_SPACE)
     time_input.send_keys(time_str)
     driver.find_element(By.CSS_SELECTOR, 'textarea[name=content]').send_keys(note)
