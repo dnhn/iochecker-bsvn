@@ -14,8 +14,6 @@ email = os.getenv('EMAIL')
 password = os.getenv('PASSWORD')
 url = os.getenv('URL')
 
-if not all([email, password, url]): raise ValueError('Check your .env')
-
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
 options.add_experimental_option('prefs', {'profile.default_content_setting_values.notifications': 2})
@@ -23,11 +21,15 @@ driver = webdriver.Chrome(options)
 
 
 def main():
-    if len(dates) == 0:
-        print('Dates are empty.')
+    if not all([email, password, url]):
+        print('\nCheck .env')
         return
 
-    print('Checking…')
+    if len(dates) == 0:
+        print('\nDates are empty.')
+        return
+
+    print('\nChecking…')
     driver.get(url)
     driver.find_element(By.CSS_SELECTOR, 'input[name=email]').send_keys(email)
     password_input = driver.find_element(By.CSS_SELECTOR, 'input[type=password]')
