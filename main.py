@@ -1,5 +1,6 @@
 import os
 import time
+import webbrowser
 
 from dotenv import load_dotenv
 from selenium import webdriver
@@ -37,6 +38,7 @@ def main():
         check(d, '09:00', 'Check-in.')
         check(d, '18:00', 'Check-out.')
 
+    webbrowser.open(url + '/approvals/my-requests')
     driver.quit()
 
 
