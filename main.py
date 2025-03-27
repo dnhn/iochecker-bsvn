@@ -20,6 +20,11 @@ driver = webdriver.Chrome(options)
 
 
 def main():
+    if len(dates) == 0:
+        print('Dates are empty.')
+        return
+
+    print('Checking…')
     driver.get(url)
     driver.find_element(By.CSS_SELECTOR, 'input[name=email]').send_keys(email)
     password_input = driver.find_element(By.CSS_SELECTOR, 'input[type=password]')
