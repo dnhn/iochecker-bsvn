@@ -6,10 +6,11 @@ py = .venv/bin/python
 welcome:
 	@echo 'setup    -- Setup environment'
 	@echo 'clean    -- Clean up environment'
-	@echo 'check    -- Run the program'
+	@echo 'check    -- Run program'
 
 setup:
 	@python3 -m venv .venv
+	@cp .env.sample .env
 	@echo 'Virtual environment created.'
 	@echo 'Run the following commands:'
 	@echo '> source .venv/bin/activate'
@@ -21,6 +22,4 @@ clean:
 	@echo 'Cleaned up.'
 
 check:
-	@echo 'Checking…'
 	@$(py) -m main
-	@echo 'Checked.'
