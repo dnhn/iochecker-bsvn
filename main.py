@@ -10,9 +10,9 @@ from selenium.webdriver.common.keys import Keys
 from config import dates
 
 load_dotenv()
-email = os.getenv('EMAIL')
-password = os.getenv('PASSWORD')
-url = os.getenv('URL')
+EMAIL = os.getenv('EMAIL')
+PASSWORD = os.getenv('PASSWORD')
+URL = os.getenv('URL')
 
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
@@ -21,7 +21,7 @@ driver = webdriver.Chrome(options)
 
 
 def main():
-    if not all([email, password, url]):
+    if not all([EMAIL, PASSWORD, URL]):
         print('\nCheck .env')
         return
 
@@ -30,10 +30,10 @@ def main():
         return
 
     print('\nChecking…')
-    driver.get(url)
-    driver.find_element(By.CSS_SELECTOR, 'input[name=email]').send_keys(email)
+    driver.get(URL)
+    driver.find_element(By.CSS_SELECTOR, 'input[name=email]').send_keys(EMAIL)
     password_input = driver.find_element(By.CSS_SELECTOR, 'input[type=password]')
-    password_input.send_keys(password)
+    password_input.send_keys(PASSWORD)
     password_input.send_keys(Keys.RETURN)
     time.sleep(1)
 
@@ -42,7 +42,7 @@ def main():
         check(d, '09:00', 'Check-in.')
         check(d, '18:00', 'Check-out.')
 
-    webbrowser.open(url + '/approvals/my-requests')
+    webbrowser.open(URL + '/approvals/my-requests')
     driver.quit()
 
 
