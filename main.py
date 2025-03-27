@@ -10,9 +10,11 @@ from selenium.webdriver.common.keys import Keys
 from config import dates
 
 load_dotenv()
-url = os.getenv('URL')
 email = os.getenv('EMAIL')
 password = os.getenv('PASSWORD')
+url = os.getenv('URL')
+
+if not all([email, password, url]): raise ValueError('Check your .env')
 
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
